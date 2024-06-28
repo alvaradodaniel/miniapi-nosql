@@ -1,0 +1,126 @@
+### //CREAR PERFIL DE BBVA (Daniel Alvarado)  //ESte ya esta insertado en la DB
+POST http://localhost:3000/api/users HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Daniel Enrique Alvarado Elias",
+  "date_of_birth": "2004-09-18",
+  "address": "C. 13a Villa Juarez, Chihuahua, México",
+  "email": "alvaradodaniel128@gmail.com",
+  "phone": "+526141542679",
+  "identification": [
+    {
+      "type": "INE",
+      "OCR": "8934GH3J14P2"
+    }
+  ],
+  "bank_account": [
+    {
+      "account_number": "8934275917592052",
+      "CLABE": "41328904173583125132",
+      "balance": 5423,
+      "cards": [
+        {
+          "type": "debit",
+          "card_number": "7843-4321-5465-4376",
+          "expiration_date": "12/25",
+          "cvv": "893"
+        }
+      ]
+    }
+  ],
+  "credentials": [
+    {
+      "password": "password123",
+      "security_question": "¿Nombre de tu primera mascota?",
+      "security_answer": "Firulais"
+    }
+  ]
+}
+
+### //CREAR PERFIL DE BBVA (Jesus De los Santos)
+POST http://localhost:3000/api/users HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Jesus Alberto De los Santos Hernandez",
+  "date_of_birth": "2004-12-19",
+  "address": "C. 13a Villa Juarez, Chihuahua, México",
+  "email": "alvaradodaniel128@gmail.com",
+  "phone": "+526144324123",
+  "identification": [
+    {
+      "type": "INE",
+      "OCR": "674347HD3282"
+    }
+  ],
+  "bank_account": [
+    {
+      "account_number": "3427519137592052",
+      "CLABE": "11328943173532125132",
+      "balance": 200,
+      "cards": [
+        {
+          "type": "credit",
+          "card_number": "1423-5352-6536-2345",
+          "expiration_date": "12/27",
+          "cvv": "123"
+        }
+      ]
+    }
+  ],
+  "credentials": [
+    {
+      "password": "holaatodos12345",
+      "security_question": "¿Apodo que tenias de niño?",
+      "security_answer": "Tonoto"
+    }
+  ]
+}
+
+
+### //VER TODOS LOS PERFILES
+GET http://localhost:3000/api/users
+
+
+### //VER TODA LA INFORMACION DE UN SOLO USUARIO (Ya trae el _ID en el endpoint del usuario Daniel Alvarado, pero se puede cambiar viendo la ID de otro perfil con el anterior endpoint)
+GET http://localhost:3000/api/users/user/todo/667f04f35b0caf723f3513d3
+
+
+### //VER UN SOLO PERFIL CON LA _ID Y TRAERME ID, NAME AND EMAIL AND BANK INFORMATION
+GET http://localhost:3000/api/users/user/667f04f35b0caf723f3513d3
+
+
+### //HACER UNA TRANSACCION CON _ID, ACCOUNT_NUMBER Y CARD_NUMBER
+PUT http://localhost:3000/api/users/user/transaction/667f04f35b0caf723f3513d3 HTTP/1.1
+Content-Type: application/json
+
+{
+  "cvv": "893",
+  "account_number":"8934275917592052",
+  "card_number": "7843-4321-5465-4376",
+  "datetime": "2024-06-21T14:00:00Z",
+  "description": "Pago de Hola",
+  "amount": 200.00,
+  "location": "Ciudad de México, México",
+  "transaction_type": "payment",
+  "ip": "192.168.1.2",
+  "mac_address": "00:14:22:01:23:46",
+  "concept": "Servicios",
+  "reference": "REF67890"
+}
+
+### //ACTUALIZAR LOS DATOS DE CONTACTO (EMAIL y PHONE) DE UN USUARIO
+PUT http://localhost:3000/api/users/user/update/667f04f35b0caf723f3513d3 HTTP/1.1
+Content-Type: application/json
+
+{
+  "email":"danielnuevoemail@gmail.com",
+  "phone": "+526149084323"
+}
+
+
+//BORRAR UN USUARIO (CAMBIARLE LA _ID POR LA DE ALGUN USUARIO QUE EXISTA)
+###
+DELETE http://localhost:3000/api/users/user/delete/667efbd65b0caf723f351359 HTTP/1.1
+
